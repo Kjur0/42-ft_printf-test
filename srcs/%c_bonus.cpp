@@ -1,43 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   %p.cpp                                             :+:      :+:    :+:   */
+/*   %c_bonus.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjurkows <kjurkows@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/01 17:04:07 by kjurkows          #+#    #+#             */
-/*   Updated: 2026/07/03 15:51:26 by kjurkows         ###   ########.fr       */
+/*   Created: 2026/07/03 15:50:21 by kjurkows          #+#    #+#             */
+/*   Updated: 2026/07/03 15:50:55 by kjurkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_main.hpp"
 
-TEST(p, basic)
+TEST(c_bonus, align_right)
 {
-	const char		*fmt = "%p";
-	const void		*ptr = (void *)0x12345678;
+	const char		*fmt = "%5c";
+	const char		c = 'a';
 
 	::testing::internal::CaptureStdout();
-	const int		c_ret = printf(fmt, ptr);
+	const int		c_ret = printf(fmt, c);
 	const string	c_output = ::testing::internal::GetCapturedStdout();
 	::testing::internal::CaptureStdout();
-	const int		ft_ret = ft_printf(fmt, ptr);
+	const int		ft_ret = ft_printf(fmt, c);
 	const string	ft_output = ::testing::internal::GetCapturedStdout();
 
 	EXPECT_EQ(c_output, ft_output);
 	EXPECT_EQ(c_ret, ft_ret);
 }
 
-TEST(p, null)
+TEST(c_bonus, align_left)
 {
-	const char		*fmt = "%p";
-	const void		*ptr = nullptr;
+	const char		*fmt = "%-5c";
+	const char		c = 'a';
 
 	::testing::internal::CaptureStdout();
-	const int		c_ret = printf(fmt, ptr);
+	const int		c_ret = printf(fmt, c);
 	const string	c_output = ::testing::internal::GetCapturedStdout();
 	::testing::internal::CaptureStdout();
-	const int		ft_ret = ft_printf(fmt, ptr);
+	const int		ft_ret = ft_printf(fmt, c);
+	const string	ft_output = ::testing::internal::GetCapturedStdout();
+
+	EXPECT_EQ(c_output, ft_output);
+	EXPECT_EQ(c_ret, ft_ret);
+}
+
+TEST(c_bonus, less_width)
+{
+	const char		*fmt = "%0c";
+	const char		c = 'a';
+
+	::testing::internal::CaptureStdout();
+	const int		c_ret = printf(fmt, c);
+	const string	c_output = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_ret = ft_printf(fmt, c);
 	const string	ft_output = ::testing::internal::GetCapturedStdout();
 
 	EXPECT_EQ(c_output, ft_output);

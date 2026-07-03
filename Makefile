@@ -6,26 +6,35 @@
 #    By: kjurkows <kjurkows@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/18 12:43:32 by kjurkows          #+#    #+#              #
-#    Updated: 2026/07/01 17:13:23 by kjurkows         ###   ########.fr        #
+#    Updated: 2026/07/03 16:20:38 by kjurkows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	ft_printf-test
 
 CXX				=	g++
-CXXFLAGS		=	-std=c++17
+CXXFLAGS		=	-std=c++17 -Wall -Wextra -Werror
 
 FT_PRINTF_DIR	=	./ft_printf
+FT_PRINTF_INC	=	$(FT_PRINTF_DIR)/includes
 SRCS_DIR		=	./srcs
-BIN_DIR			=	./bin
 OBJS_DIR		=	./build
 
 LIBFTPRINTF		=	$(FT_PRINTF_DIR)/libftprintf.a
-GTEST_FLAGS		=	-lgtest -lpthread
-INCLUDES		=	-I$(FT_PRINTF_DIR)/includes
 
-SRCS		=	$(wildcard $(SRCS_DIR)/*.cpp)
-OBJS		=	$(patsubst $(SRCS_DIR)/%.cpp, $(OBJS_DIR)/%.o, $(SRCS))
+GTEST_FLAGS		=	-lgtest -lpthread
+INCLUDES		=	-I$(FT_PRINTF_INC) -I$(FT_PRINTF_DIR)/libft
+
+SRCS		=	%c.cpp \
+				%s.cpp \
+				%p.cpp \
+				%d%i.cpp \
+				%u.cpp \
+				%x%X.cpp \
+				%%.cpp
+BONUS_SRCS	=	$(SRCS:%.cpp=%_bonus.cpp)
+OBJS		=	$(SRCS:%.cpp=$(OBJS_DIR)/%.o)
+BONUS_OBJS	=	$(BONUS_SRCS:%.cpp=$(OBJS_DIR)/%.o)
 MAIN_OBJ	=	$(OBJS_DIR)/_main.o
 
 RM			=	rm -rf
@@ -39,39 +48,47 @@ CYAN		=	\033[;36m
 RESET		=	\033[0m
 POSITION	=	\033[2K\r
 
-all:	$(NAME)
-	@echo "$(GREEN)$(NAME) is ready to use.$(RESET)"
+all: $(OBJS) $(MAIN_OBJ)
+	@echo -n "$(CYAN)Compiling libftprintf...$(RESET)"
+	@make -C $(FT_PRINTF_DIR) > /dev/null
+	@echo "$(POSITION)$(GREEN)Compiled libftprintf successfully!$(RESET)"
+	@echo -n "$(CYAN)Compiling $(NAME)...$(RESET)"
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -o $(NAME) $^ $(LIBFTPRINTF) $(GTEST_FLAGS)
+	@echo "$(POSITION)$(GREEN)$(NAME) compiled successfully!$(RESET)"
 
-$(NAME):	$(LIBFTPRINTF) $(OBJS) | $(BIN_DIR)
-	@echo "$(BLUE)Creating $(NAME)...$(RESET)"
-	@$(CXX) $(CXXFLAGS) $(INCLUDES) $(OBJS) -L$(FT_PRINTF_DIR) -lftprintf $(GTEST_FLAGS) -o $(BIN_DIR)/$(NAME)
-	@echo "$(GREEN)$(NAME) has been created successfully!$(RESET)"
+bonus: $(OBJS) $(BONUS_OBJS) $(MAIN_OBJ)
+	@echo -n "$(CYAN)Compiling libftprintf with bonus...$(RESET)"
+	@make -C $(FT_PRINTF_DIR) bonus > /dev/null
+	@echo "$(POSITION)$(GREEN)Compiled libftprintf with bonus successfully!$(RESET)"
+	@echo -n "$(CYAN)Compiling $(NAME) with bonus...$(RESET)"
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -o $(NAME) $^ $(LIBFTPRINTF) $(GTEST_FLAGS)
+	@echo "$(POSITION)$(GREEN)$(NAME) with bonus compiled successfully!$(RESET)"
 
-$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.cpp | $(OBJS_DIR)
-	@echo -n "$(YELLOW)Compiling $<...$(RESET)"
+$(MAIN_OBJ): $(SRCS_DIR)/_main.cpp | $(OBJS_DIR)
+	@echo -n "$(CYAN)Compiling _main...$(RESET)"
 	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
-	@echo "$(POSITION)$(GREEN)Compiled $< successfully!$(RESET)"
+	@echo "$(POSITION)$(GREEN)Compiled _main successfully!$(RESET)"
 
-$(LIBFTPRINTF):
-	@if [ ! -d $(FT_PRINTF_DIR) ]; then echo "$(RED)Error: ft_printf directory not found!$(RESET)"; exit 1; fi
-	@echo "$(BLUE)Building ft_printf...$(RESET)"
-	@make -C $(FT_PRINTF_DIR)
-	@echo "$(GREEN)ft_printf has been built successfully!$(RESET)"
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp | $(OBJS_DIR)
+	@echo -n "$(CYAN)Compiling $(basename $(notdir $<))...$(RESET)"
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+	@echo "$(POSITION)$(GREEN)Compiled $(basename $(notdir $<)) successfully!$(RESET)"
 
-$(BIN_DIR) $(OBJS_DIR):
-	@mkdir -p $@
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
 
 clean:
+	@echo -n "$(CYAN)Cleaning object files...$(RESET)"
 	@$(RM) $(OBJS_DIR)
-	@if [ -d $(FT_PRINTF_DIR) ]; then make -C $(FT_PRINTF_DIR) clean; fi
-	@echo "$(RED)Cleaned object files.$(RESET)"
+	@make -C $(FT_PRINTF_DIR) clean
+	@echo "$(POSITION)$(GREEN)Cleaned object files successfully!$(RESET)"
 
-fclean:	clean
-	@$(RM) $(BIN_DIR)
-	@if [ -d $(FT_PRINTF_DIR) ]; then make -C $(FT_PRINTF_DIR) fclean; fi
-	@echo "$(RED)Fully cleaned all generated files.$(RESET)"
+fclean:
+	@echo -n "$(CYAN)Cleaning $(NAME)...$(RESET)"
+	@$(RM) $(NAME)
+	@make -C $(FT_PRINTF_DIR) fclean
+	@echo "$(POSITION)$(GREEN)Cleaned $(NAME) successfully!$(RESET)"
 
-re:	fclean all
-	@echo "$(GREEN)Rebuild complete!$(RESET)"
+re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

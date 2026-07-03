@@ -14,12 +14,19 @@ See [Detailed description](#detailed-description) for list of tests.
 
 ### Before testing
 
-clone your `ft_printf` into `ft_printf` folder
+1. clone your `ft_printf` into `ft_printf` folder
+2. In `Makefile`, set `FT_PRINTF_INC` to the path of your `ft_printf/includes` folder (or any other folder with `ft_printf.h` in it)
 
-### Running all tests
+### Testing mandatory part
 
 ```shell
 ./test.sh
+```
+
+### Testing bonus part
+
+```shell
+./test.sh bonus
 ```
 
 ## Resources
@@ -76,6 +83,7 @@ Bellow is the list of all tests:
 | Name          | What is checked  |
 |---------------|------------------|
 | `basic`       | simple string    |
+| `null`        | `nullptr`        |
 | `align_right` | min-width number |
 | `align_left`  | `-` flag+number  |
 | `less_width`  | `%5s`            |
@@ -137,6 +145,7 @@ Bellow is the list of all tests:
 
 ### `%%` (`percent`)
 
-| Name    | What is checked |
-|---------|-----------------|
-| `basic` | `%%`            |
+| Name    | What is checked  |
+|---------|------------------|
+| `basic` | `%%`             |
+| `width` | min-width number |

@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   %p.cpp                                             :+:      :+:    :+:   */
+/*   %%_bonus.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjurkows <kjurkows@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/01 17:04:07 by kjurkows          #+#    #+#             */
-/*   Updated: 2026/07/03 15:51:26 by kjurkows         ###   ########.fr       */
+/*   Created: 2026/07/03 16:06:57 by kjurkows          #+#    #+#             */
+/*   Updated: 2026/07/03 16:22:13 by kjurkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_main.hpp"
 
-TEST(p, basic)
+TEST(percent_bonus, width)
 {
-	const char		*fmt = "%p";
-	const void		*ptr = (void *)0x12345678;
+	const char		*fmt = "%20%";
 
 	::testing::internal::CaptureStdout();
-	const int		c_ret = printf(fmt, ptr);
+	const int		c_ret = printf(fmt, nullptr);
 	const string	c_output = ::testing::internal::GetCapturedStdout();
 	::testing::internal::CaptureStdout();
-	const int		ft_ret = ft_printf(fmt, ptr);
-	const string	ft_output = ::testing::internal::GetCapturedStdout();
-
-	EXPECT_EQ(c_output, ft_output);
-	EXPECT_EQ(c_ret, ft_ret);
-}
-
-TEST(p, null)
-{
-	const char		*fmt = "%p";
-	const void		*ptr = nullptr;
-
-	::testing::internal::CaptureStdout();
-	const int		c_ret = printf(fmt, ptr);
-	const string	c_output = ::testing::internal::GetCapturedStdout();
-	::testing::internal::CaptureStdout();
-	const int		ft_ret = ft_printf(fmt, ptr);
+	const int		ft_ret = ft_printf(fmt, nullptr);
 	const string	ft_output = ::testing::internal::GetCapturedStdout();
 
 	EXPECT_EQ(c_output, ft_output);
