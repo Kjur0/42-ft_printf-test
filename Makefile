@@ -6,14 +6,14 @@
 #    By: kjurkows <kjurkows@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/18 12:43:32 by kjurkows          #+#    #+#              #
-#    Updated: 2026/07/03 16:20:38 by kjurkows         ###   ########.fr        #
+#    Updated: 2026/07/22 16:49:24 by kjurkows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	ft_printf-test
 
-CXX				=	g++
-CXXFLAGS		=	-std=c++17 -Wall -Wextra -Werror
+CXX				=	c++
+CXXFLAGS		=	-std=c++17 -Wall -Wextra -Werror -Wno-format
 
 FT_PRINTF_DIR	=	./ft_printf
 FT_PRINTF_INC	=	$(FT_PRINTF_DIR)/includes
@@ -50,7 +50,7 @@ POSITION	=	\033[2K\r
 
 all: $(OBJS) $(MAIN_OBJ)
 	@echo -n "$(CYAN)Compiling libftprintf...$(RESET)"
-	@make -C $(FT_PRINTF_DIR) > /dev/null
+	@$(MAKE) -C $(FT_PRINTF_DIR) > /dev/null
 	@echo "$(POSITION)$(GREEN)Compiled libftprintf successfully!$(RESET)"
 	@echo -n "$(CYAN)Compiling $(NAME)...$(RESET)"
 	@$(CXX) $(CXXFLAGS) $(INCLUDES) -o $(NAME) $^ $(LIBFTPRINTF) $(GTEST_FLAGS)
@@ -58,7 +58,7 @@ all: $(OBJS) $(MAIN_OBJ)
 
 bonus: $(OBJS) $(BONUS_OBJS) $(MAIN_OBJ)
 	@echo -n "$(CYAN)Compiling libftprintf with bonus...$(RESET)"
-	@make -C $(FT_PRINTF_DIR) bonus > /dev/null
+	@$(MAKE) -C $(FT_PRINTF_DIR) bonus > /dev/null
 	@echo "$(POSITION)$(GREEN)Compiled libftprintf with bonus successfully!$(RESET)"
 	@echo -n "$(CYAN)Compiling $(NAME) with bonus...$(RESET)"
 	@$(CXX) $(CXXFLAGS) $(INCLUDES) -o $(NAME) $^ $(LIBFTPRINTF) $(GTEST_FLAGS)
@@ -80,13 +80,13 @@ $(OBJS_DIR):
 clean:
 	@echo -n "$(CYAN)Cleaning object files...$(RESET)"
 	@$(RM) $(OBJS_DIR)
-	@make -C $(FT_PRINTF_DIR) clean
+	@$(MAKE) -C $(FT_PRINTF_DIR) clean
 	@echo "$(POSITION)$(GREEN)Cleaned object files successfully!$(RESET)"
 
 fclean:
 	@echo -n "$(CYAN)Cleaning $(NAME)...$(RESET)"
 	@$(RM) $(NAME)
-	@make -C $(FT_PRINTF_DIR) fclean
+	@$(MAKE) -C $(FT_PRINTF_DIR) fclean
 	@echo "$(POSITION)$(GREEN)Cleaned $(NAME) successfully!$(RESET)"
 
 re: fclean all

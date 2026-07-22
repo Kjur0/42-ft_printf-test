@@ -67,9 +67,10 @@ Bellow is the list of all tests:
 
 ### `string`
 
-| Name    | Description  |
-|---------|--------------|
-| `basic` | No formatter |
+| Name      | Description       |
+|-----------|-------------------|
+| `basic`   | No formatter      |
+| `invalid` | Invalid formatter |
 
 ### `%c` (`c`)
 
