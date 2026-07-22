@@ -6,7 +6,7 @@
 /*   By: kjurkows <kjurkows@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 15:51:40 by kjurkows          #+#    #+#             */
-/*   Updated: 2026/07/03 15:51:44 by kjurkows         ###   ########.fr       */
+/*   Updated: 2026/07/22 14:38:02 by kjurkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,4 +205,47 @@ TEST(p_bonus, mixed)
 
 	EXPECT_EQ(c_output, ft_output);
 	EXPECT_EQ(c_ret, ft_ret);
+}
+
+TEST(p_bonus, null_precision)
+{
+	const char		*fmt1 = "%p";
+	const char		*fmt2 = "%.0p";
+	const char		*fmt3 = "%.2p";
+	const char		*fmt4 = "%.8p";
+	const void		*ptr = NULL;
+
+	::testing::internal::CaptureStdout();
+	const int		c_ret1 = printf(fmt1, ptr);
+	const string	c_output1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_ret1 = ft_printf(fmt1, ptr);
+	const string	ft_output1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_ret2 = printf(fmt2, ptr);
+	const string	c_output2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_ret2 = ft_printf(fmt2, ptr);
+	const string	ft_output2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_ret3 = printf(fmt3, ptr);
+	const string	c_output3 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_ret3 = ft_printf(fmt3, ptr);
+	const string	ft_output3 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_ret4 = printf(fmt4, ptr);
+	const string	c_output4 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_ret4 = ft_printf(fmt4, ptr);
+	const string	ft_output4 = ::testing::internal::GetCapturedStdout();
+
+	EXPECT_EQ(c_output1, ft_output1);
+	EXPECT_EQ(c_ret1, ft_ret1);
+	EXPECT_EQ(c_output2, ft_output2);
+	EXPECT_EQ(c_ret2, ft_ret2);
+	EXPECT_EQ(c_output3, ft_output3);
+	EXPECT_EQ(c_ret3, ft_ret3);
+	EXPECT_EQ(c_output4, ft_output4);
+	EXPECT_EQ(c_ret4, ft_ret4);
 }

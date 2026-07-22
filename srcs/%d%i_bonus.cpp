@@ -6,7 +6,7 @@
 /*   By: kjurkows <kjurkows@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 15:51:06 by kjurkows          #+#    #+#             */
-/*   Updated: 2026/07/03 15:51:10 by kjurkows         ###   ########.fr       */
+/*   Updated: 2026/07/22 14:39:40 by kjurkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,4 +295,65 @@ TEST(di_bonus, mixed)
 	EXPECT_EQ(c_retd, ft_retd);
 	EXPECT_EQ(c_outputi, ft_outputi);
 	EXPECT_EQ(c_reti, ft_reti);
+}
+
+TEST(di_bonus, value0)
+{
+	const char		*fmtd1 = "%d";
+	const char		*fmti1 = "%i";
+	const char		*fmtd2 = "%.0d";
+	const char		*fmti2 = "%.0i";
+	const char		*fmtd3 = "%.5d";
+	const char		*fmti3 = "%.5i";
+	const int		num = 0;
+
+	::testing::internal::CaptureStdout();
+	const int		c_retd1 = printf(fmtd1, num);
+	const string	c_outputd1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_retd1 = ft_printf(fmtd1, num);
+	const string	ft_outputd1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_reti1 = printf(fmti1, num);
+	const string	c_outputi1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_reti1 = ft_printf(fmti1, num);
+	const string	ft_outputi1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_retd2 = printf(fmtd2, num);
+	const string	c_outputd2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_retd2 = ft_printf(fmtd2, num);
+	const string	ft_outputd2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_reti2 = printf(fmti2, num);
+	const string	c_outputi2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_reti2 = ft_printf(fmti2, num);
+	const string	ft_outputi2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_retd3 = printf(fmtd3, num);
+	const string	c_outputd3 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_retd3 = ft_printf(fmtd3, num);
+	const string	ft_outputd3 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_reti3 = printf(fmti3, num);
+	const string	c_outputi3 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_reti3 = ft_printf(fmti3, num);
+	const string	ft_outputi3 = ::testing::internal::GetCapturedStdout();
+
+	EXPECT_EQ(c_outputd1, ft_outputd1);
+	EXPECT_EQ(c_retd1, ft_retd1);
+	EXPECT_EQ(c_outputi1, ft_outputi1);
+	EXPECT_EQ(c_reti1, ft_reti1);
+	EXPECT_EQ(c_outputd2, ft_outputd2);
+	EXPECT_EQ(c_retd2, ft_retd2);
+	EXPECT_EQ(c_outputi2, ft_outputi2);
+	EXPECT_EQ(c_reti2, ft_reti2);
+	EXPECT_EQ(c_outputd3, ft_outputd3);
+	EXPECT_EQ(c_retd3, ft_retd3);
+	EXPECT_EQ(c_outputi3, ft_outputi3);
+	EXPECT_EQ(c_reti3, ft_reti3);
 }
