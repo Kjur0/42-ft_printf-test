@@ -15,7 +15,7 @@ PRINTF_DIR=ft_printf
 
 if [ -n "$1" ] && [ "$1" = "bonus" ]; then
 	if [ -d $PRINTF_DIR ]; then
-		make -C $PRINTF_DIR all > /dev/null
+		make -C $PRINTF_DIR bonus > /dev/null
 		if [ $? -ne 0 ]; then
 			echo "Build failed."
 			exit 1
@@ -28,7 +28,7 @@ if [ -n "$1" ] && [ "$1" = "bonus" ]; then
 	fi
 else
 	if [ -d $PRINTF_DIR ]; then
-		make -C $PRINTF_DIR bonus > /dev/null
+		make -C $PRINTF_DIR all > /dev/null
 		if [ $? -ne 0 ]; then
 			echo "Build failed."
 			exit 1
