@@ -6,7 +6,7 @@
 /*   By: kjurkows <kjurkows@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 15:51:06 by kjurkows          #+#    #+#             */
-/*   Updated: 2026/07/25 21:46:09 by kjurkows         ###   ########.fr       */
+/*   Updated: 2026/07/25 21:59:50 by kjurkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,67 @@ TEST(di_bonus, plus_space)
 	const char		*fmti2 = "% i";
 	const char		*fmtd3 = "% +d";
 	const char		*fmti3 = "% +i";
+	const int		num = 42;
+
+	::testing::internal::CaptureStdout();
+	const int		c_retd1 = printf(fmtd1, num);
+	const string	c_outputd1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_retd1 = ft_printf(fmtd1, num);
+	const string	ft_outputd1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_reti1 = printf(fmti1, num);
+	const string	c_outputi1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_reti1 = ft_printf(fmti1, num);
+	const string	ft_outputi1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_retd2 = printf(fmtd2, num);
+	const string	c_outputd2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_retd2 = ft_printf(fmtd2, num);
+	const string	ft_outputd2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_reti2 = printf(fmti2, num);
+	const string	c_outputi2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_reti2 = ft_printf(fmti2, num);
+	const string	ft_outputi2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_retd3 = printf(fmtd3, num);
+	const string	c_outputd3 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_retd3 = ft_printf(fmtd3, num);
+	const string	ft_outputd3 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_reti3 = printf(fmti3, num);
+	const string	c_outputi3 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_reti3 = ft_printf(fmti3, num);
+	const string	ft_outputi3 = ::testing::internal::GetCapturedStdout();
+
+	EXPECT_EQ(c_outputd1, ft_outputd1);
+	EXPECT_EQ(c_retd1, ft_retd1);
+	EXPECT_EQ(c_outputi1, ft_outputi1);
+	EXPECT_EQ(c_reti1, ft_reti1);
+	EXPECT_EQ(c_outputd2, ft_outputd2);
+	EXPECT_EQ(c_retd2, ft_retd2);
+	EXPECT_EQ(c_outputi2, ft_outputi2);
+	EXPECT_EQ(c_reti2, ft_reti2);
+	EXPECT_EQ(c_outputd3, ft_outputd3);
+	EXPECT_EQ(c_retd3, ft_retd3);
+	EXPECT_EQ(c_outputi3, ft_outputi3);
+	EXPECT_EQ(c_reti3, ft_reti3);
+}
+
+TEST(di_bonus, ignored)
+{
+	const char		*fmtd1 = "%020.10d";
+	const char		*fmti1 = "%020.10i";
+	const char		*fmtd2 = "%-020d";
+	const char		*fmti2 = "%-020i";
+	const char		*fmtd3 = "%+ d";
+	const char		*fmti3 = "%+ i";
 	const int		num = 42;
 
 	::testing::internal::CaptureStdout();

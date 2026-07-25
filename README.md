@@ -106,6 +106,7 @@ Bellow is the list of all tests:
 | `precision`[^b]         | `.` flag+numbers |
 | `0`[^b]                 | `0` flag+number  |
 | `plus_space`[^b]        | `+`/` ` flags    |
+| `ignored`[^b]           | `0.`/`-0`/`+-`   |
 | `mixed`[^b]             | `% -020.10p`     |
 | `null_precision`[^b]    | `NULL` with `.`  |
 
@@ -121,6 +122,7 @@ Bellow is the list of all tests:
 | `precision`[^b]   | `.` flag+numbers          |
 | `0`[^b]           | `0` flag+number           |
 | `plus_space`[^b]  | `+`/` ` flags             |
+| `ignored`[^b]     | `0.`/`-0`/`+-`            |
 | `mixed`[^b]       | `% -020.10d`/`% -020.10i` |
 | `value0`[^b]      | `0` value with `.`        |
 
@@ -136,6 +138,7 @@ Bellow is the list of all tests:
 | `precision`[^b]   | `.` flag+numbers         |
 | `0`[^b]           | `0` flag+number          |
 | `plus_space`[^b]  | `+`/` ` flags            |
+| `ignored`[^b]     | `0.`/`-0`/`+-`           |
 | `mixed`[^b]       | `% -020.10u`             |
 | `value0`[^b]      | `0` value with `.`       |
 
@@ -152,6 +155,7 @@ Bellow is the list of all tests:
 | `hash`[^b]        | `#` flag+number           |
 | `0`[^b]           | `0` flag+number           |
 | `plus_space`[^b]  | `+`/` ` flags             |
+| `ignored`[^b]     | `0.`/`-0`/`+-`            |
 | `mixed`[^b]       | `% -020.10x`/`% -020.10X` |
 | `value0`[^b]      | `0` value with `.`        |
 

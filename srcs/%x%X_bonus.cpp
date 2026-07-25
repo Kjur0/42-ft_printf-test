@@ -6,7 +6,7 @@
 /*   By: kjurkows <kjurkows@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 15:52:41 by kjurkows          #+#    #+#             */
-/*   Updated: 2026/07/22 14:42:42 by kjurkows         ###   ########.fr       */
+/*   Updated: 2026/07/25 22:04:36 by kjurkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,6 +315,68 @@ TEST(x_bonus, plus_space)
 	EXPECT_EQ(c_retX3, ft_retX3);
 }
 
+
+TEST(x_bonus, ignored)
+{
+	const char		*fmtx1 = "%020.10x";
+	const char		*fmtX1 = "%020.10X";
+	const char		*fmtx2 = "%-020x";
+	const char		*fmtX2 = "%-020X";
+	const char		*fmtx3 = "%+ x";
+	const char		*fmtX3 = "%+ X";
+	const int		num = 42;
+
+	::testing::internal::CaptureStdout();
+	const int		c_retx1 = printf(fmtx1, num);
+	const string	c_outputx1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_retx1 = ft_printf(fmtx1, num);
+	const string	ft_outputx1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_retX1 = printf(fmtX1, num);
+	const string	c_outputX1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_retX1 = ft_printf(fmtX1, num);
+	const string	ft_outputX1 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_retx2 = printf(fmtx2, num);
+	const string	c_outputx2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_retx2 = ft_printf(fmtx2, num);
+	const string	ft_outputx2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_retX2 = printf(fmtX2, num);
+	const string	c_outputX2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_retX2 = ft_printf(fmtX2, num);
+	const string	ft_outputX2 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_retx3 = printf(fmtx3, num);
+	const string	c_outputx3 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_retx3 = ft_printf(fmtx3, num);
+	const string	ft_outputx3 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		c_retX3 = printf(fmtX3, num);
+	const string	c_outputX3 = ::testing::internal::GetCapturedStdout();
+	::testing::internal::CaptureStdout();
+	const int		ft_retX3 = ft_printf(fmtX3, num);
+	const string	ft_outputX3 = ::testing::internal::GetCapturedStdout();
+
+	EXPECT_EQ(c_outputx1, ft_outputx1);
+	EXPECT_EQ(c_retx1, ft_retx1);
+	EXPECT_EQ(c_outputX1, ft_outputX1);
+	EXPECT_EQ(c_retX1, ft_retX1);
+	EXPECT_EQ(c_outputx2, ft_outputx2);
+	EXPECT_EQ(c_retx2, ft_retx2);
+	EXPECT_EQ(c_outputX2, ft_outputX2);
+	EXPECT_EQ(c_retX2, ft_retX2);
+	EXPECT_EQ(c_outputx3, ft_outputx3);
+	EXPECT_EQ(c_retx3, ft_retx3);
+	EXPECT_EQ(c_outputX3, ft_outputX3);
+	EXPECT_EQ(c_retX3, ft_retX3);
+}
+
 TEST(x_bonus, mixed)
 {
 	const char			*fmtx = "% #-020.10x";
@@ -445,7 +507,7 @@ TEST(x_bonus, value0)
 	::testing::internal::CaptureStdout();
 	const int			ft_retX6 = ft_printf(fmtX6, num);
 	const string		ft_outputX6 = ::testing::internal::GetCapturedStdout();
-	
+
 
 	EXPECT_EQ(c_outputx1, ft_outputx1);
 	EXPECT_EQ(c_retx1, ft_retx1);
