@@ -6,7 +6,7 @@
 /*   By: kjurkows <kjurkows@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 15:51:06 by kjurkows          #+#    #+#             */
-/*   Updated: 2026/07/22 14:39:40 by kjurkows         ###   ########.fr       */
+/*   Updated: 2026/07/25 21:46:09 by kjurkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,7 +276,7 @@ TEST(di_bonus, mixed)
 {
 	const char		*fmtd = "% -020.10d";
 	const char		*fmti = "% -020.10i";
-	const int		num = 42;
+	const int		num = -42;
 
 	::testing::internal::CaptureStdout();
 	const int		c_retd = printf(fmtd, num);
