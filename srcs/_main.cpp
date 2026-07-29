@@ -6,7 +6,7 @@
 /*   By: kjurkows <kjurkows@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 12:28:55 by kjurkows          #+#    #+#             */
-/*   Updated: 2026/07/22 17:49:41 by kjurkows         ###   ########.fr       */
+/*   Updated: 2026/07/29 19:33:57 by kjurkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ TEST(string, basic)
 TEST(string, invalid)
 {
 	::testing::internal::CaptureStdout();
-	const int		c_ret1 = printf("a%r");
+	const int		c_ret1 = printf("a%q");
 	const string	c_output1 = ::testing::internal::GetCapturedStdout();
 	::testing::internal::CaptureStdout();
-	const int		ft_ret1 = ft_printf("a%r");
+	const int		ft_ret1 = ft_printf("a%q");
 	const string	ft_output1 = ::testing::internal::GetCapturedStdout();
 	::testing::internal::CaptureStdout();
 	const int		c_ret2 = printf("%");
