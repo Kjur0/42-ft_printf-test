@@ -15,7 +15,7 @@ See [Detailed description](#detailed-description) for list of tests.
 ### Before testing
 
 1. clone your `ft_printf` into `ft_printf` folder
-2. In `Makefile`, set `FT_PRINTF_INC` to the path of your `ft_printf/includes` folder (or any other folder with `ft_printf.h` in it)
+2. In `Makefile`, set `FT_PRINTF_INC` to the path of your `ft_printf/include` folder (or any other folder with `ft_printf.h` in it)
 
 ### Testing mandatory part
 

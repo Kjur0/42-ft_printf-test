@@ -6,7 +6,7 @@
 #    By: kjurkows <kjurkows@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/18 12:43:32 by kjurkows          #+#    #+#              #
-#    Updated: 2026/07/22 16:49:24 by kjurkows         ###   ########.fr        #
+#    Updated: 2026/08/11 18:19:14 by kjurkows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CXX				=	c++
 CXXFLAGS		=	-std=c++17 -Wall -Wextra -Werror -Wno-format
 
 FT_PRINTF_DIR	=	./ft_printf
-FT_PRINTF_INC	=	$(FT_PRINTF_DIR)/includes
+FT_PRINTF_INC	=	$(FT_PRINTF_DIR)/include
 SRCS_DIR		=	./srcs
 OBJS_DIR		=	./build
 
