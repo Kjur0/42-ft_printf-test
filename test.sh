@@ -13,6 +13,8 @@
 
 PRINTF_DIR=ft_printf
 
+make -C $PRINTF_DIR fclean > /dev/null
+
 if [ -n "$1" ] && [ "$1" = "bonus" ]; then
 	if [ -d $PRINTF_DIR ]; then
 		make -C $PRINTF_DIR bonus > /dev/null
@@ -43,5 +45,4 @@ fi
 
 ./ft_printf-test
 
-make -C $PRINTF_DIR fclean > /dev/null
 make fclean > /dev/null
